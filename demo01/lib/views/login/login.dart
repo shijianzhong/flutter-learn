@@ -31,13 +31,13 @@ class LoginState extends State<Login> {
               Row(
                 children: <Widget>[
                   Container(
-                    height: 100.0,
+                    height: 200.0,
                   )
                 ],
               ),
               TextField(
                 decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(20.0),
+                    // contentPadding: EdgeInsets.all(20.0),
                     hintText: '用户名',
                     icon: Icon(Icons.person)),
               ),
@@ -50,7 +50,7 @@ class LoginState extends State<Login> {
               ),
               TextField(
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(20.0),
+                  // contentPadding: EdgeInsets.all(20.0),
                   icon: Icon(Icons.lock),
                   hintText: '密码',
                 ),
