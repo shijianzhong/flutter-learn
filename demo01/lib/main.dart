@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'views/login/login.dart';
 import 'views/pages/index_page.dart';
 
@@ -8,7 +9,8 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      home: IndexPage(),
+      debugShowCheckedModeBanner: false,
+      home: Login(),
     );
   }  
 }
