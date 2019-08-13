@@ -117,6 +117,4 @@ class LoginState extends State<Login> {
           ),
         ));
   }
-
-  void _login() {}
 }
