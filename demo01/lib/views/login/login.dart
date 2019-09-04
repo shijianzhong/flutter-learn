@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/index_page.dart';
+import 'package:dio/dio.dart';
+import '../../utils/event_bus.dart';
+import '../../api/request.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -9,6 +12,9 @@ class Login extends StatefulWidget {
 
 class LoginState extends State<Login> {
   var _isChecked = false;
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passWordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
@@ -34,6 +40,7 @@ class LoginState extends State<Login> {
                   padding: EdgeInsets.only(left: 20, right: 20),
                   margin: EdgeInsets.only(top: 40),
                   child: TextField(
+                    controller: userNameController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.phone_android,
@@ -46,6 +53,7 @@ class LoginState extends State<Login> {
                 padding: EdgeInsets.only(left: 20, right: 20),
                 margin: EdgeInsets.only(top: 10),
                 child: TextField(
+                  controller: passWordController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.https,
@@ -53,6 +61,7 @@ class LoginState extends State<Login> {
                     ),
                     hintText: '密码',
                   ),
+                  obscureText: true,
                 ),
               ),
               Container(
@@ -98,12 +107,7 @@ class LoginState extends State<Login> {
                       '登陆',
                       style: TextStyle(color: Colors.white),
                     )),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) => new IndexPage()));
-                    }),
+                    onTap: getHttp),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: <Color>[
@@ -116,5 +120,35 @@ class LoginState extends State<Login> {
             ],
           ),
         ));
+  }
+
+  getHttp() async {
+    try {
+      var user = {
+        "appType": "app",
+        "platform": "ios",
+        "userName": userNameController.text,
+        "userPwd": passWordController.text
+      };
+      print(user);
+      Http instance = Http.getInstance();
+      Response response = await instance.post('/user/login2', user);
+      print(response);
+      if (response.data['code'] == 1000) {
+        // Store.token = response.data['token'];
+        bus.emit('login', response.data['data']['token']);
+
+        print('登录成功');
+
+        Navigator.push(
+            context,
+            new MaterialPageRoute(
+                builder: (context) => new IndexPage(
+                      userId: response.data['data']['userId'],
+                    )));
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -22,9 +22,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  dio: ^1.0.0
+  dio: ^2.1.0
   flutter_inappbrowser: ^1.2.1
   flutter_screenutil: ^0.5.3
+  fish_redux: ^0.2.5
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,20 @@ flutter:
     - images/2.0x/staff.png
     - images/2.0x/street.png
     - images/2.0x/home_top_bg.png
+    - images/main_top.png
+    - images/weather.png
+    - images/btnbg1.png
+    - images/btnbg2.png
+    - images/btnbg3.png
+    - images/btnbg4.png
+    - images/btnbg5.png
+    - images/btnbg6.png
+    - images/btnicon1.png
+    - images/btnicon2.png
+    - images/btnicon3.png
+    - images/btnicon4.png
+    - images/btnicon5.png
+    - images/btnicon6.png
   #  - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
